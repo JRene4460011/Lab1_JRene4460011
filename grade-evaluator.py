@@ -140,7 +140,15 @@ def evaluate_grades(data):
         
     # TODO: f) Print the final decision (PASSED / FAILED) and resubmission options
         
-        pass
+    print("\n--------- Final Decision ---------")
+    print(f"Overall Status: {'PASSED' if formative_percentage >= 50 and summative_percentage >= 50 else 'FAILED'}")
+
+    if eligible_for_resubmission:
+        print("\nEligible assignment(s) for resubmission:")
+        for item in eligible_for_resubmission:
+            print(f"- {item['assignment']} (Score: {item['score']}%, Weight: {item['weight']}%)")
+    else:
+        print("No formative assignments need resubmission.")
 
 if __name__ == "__main__":
     # 1. Load the data
