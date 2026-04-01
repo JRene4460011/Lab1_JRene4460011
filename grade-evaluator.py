@@ -86,7 +86,6 @@ def evaluate_grades(data):
 
     # TODO: c) Calculate the Final Grade and GPA
 
-    Final_grade = 0
     Total_weight = 0
     Total_Scores = 0
     for item in data:
@@ -122,6 +121,7 @@ def evaluate_grades(data):
     #          and determine which one(s) have the highest weight for resubmission.
     
     failed_formative_assignments = []
+    eligible_for_resubmission = []
 
     for item in data:
         if item['group'].lower() == 'formative' and item['score'] < 50:
@@ -153,6 +153,11 @@ def evaluate_grades(data):
 if __name__ == "__main__":
     # 1. Load the data
     course_data = load_csv_data()
+
+    # I think this will help verify whether the csv is valid or not and avoid it when it is empty.
+    if not course_data:
+        print("Error: The CSV file is empty or contains no valid records.")
+        sys.exit(1)
     
     # 2. Process the features
     evaluate_grades(course_data)
